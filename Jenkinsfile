@@ -6,7 +6,7 @@ pipeline {
     stages{
         stage('Git Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/kumariseait/terra_ec2.git'
+                git branch: 'main', url: 'https://github.com/kumariseait/terra_webserver.git'
             }
         }
         stage('Terraform Initilization'){
@@ -23,11 +23,6 @@ pipeline {
             steps{
                 sh 'terraform apply --auto-approve'
             }
-        }
-        stage('Run next job'){
-            steps{
-                build job: "terra_destroy", wait: true
-            }   
         }
     }
 }
